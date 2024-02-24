@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Movies> //gives us a list of application objects
+
+<table class="table table-bordered" style="padding: 10px; border: 1px solid #7B5636; font-family: 'Roboto Condensed', sans-serif;">
+    <thead class="fw-bold">
+        <!--Here are the column names-->
+        <tr>
+            <td>Title</td>
+            <td>Category</td>
+            <td>Year</td>
+            <td>Director</td>
+            <td>Rating</td>
+            <td>Edited</td>
+            <td>Lent To</td>
+            <td>Copied To Plex</td>
+            <td>Notes</td>
+        </tr>
+    </thead>
+
+
+    @foreach (var record in Model)
+    {
+        <tbody>
+            <!--Here are the entries-->
+            <tr>
+                <td>@record.Title</td>
+                <td>@record.Category?.CategoryName</td>
+                <td>@record.Year</td>
+                <td>@record.Director</td>
+                <td>@record.Rating</td>
+                <td>@record.Edited</td>
+                <td>@record.LentTo</td>
+                <td>@record.CopiedToPlex</td>
+                <td>@record.Notes</td>
+
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@record.MovieId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@record.MovieId">Delete</a></td>
+            </tr>
+        </tbody>
+    }
+</table>
